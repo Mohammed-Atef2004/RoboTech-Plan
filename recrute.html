@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Recruitment Full Timeline</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background: #f4f7f9;
+    padding: 40px 20px;
+    color: #1a1a1a;
+  }
+
+  h1 {
+    text-align: center;
+    color: #0f172a;
+    font-size: 2.5em;
+    margin-bottom: 50px;
+    font-weight: 800;
+  }
+
+  .timeline {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 30px;
+    max-width: 1300px;
+    margin: 0 auto;
+  }
+
+  .card {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    border: 1px solid #e2e8f0;
+  }
+
+  .card h2 {
+    margin-top: 0;
+    font-size: 1.5em;
+    color: #1e293b;
+    border-bottom: 3px solid #f1f5f9;
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+  }
+
+  .task {
+    position: relative;
+    padding-left: 25px;
+    padding-bottom: 25px;
+    border-left: 2px solid #cbd5e1;
+  }
+
+  .task:last-child {
+    border-left: 2px solid transparent;
+    padding-bottom: 0;
+  }
+
+  .task::before {
+    content: '';
+    position: absolute;
+    left: -9px;
+    top: 5px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: white;
+    border: 3px solid #3b82f6;
+  }
+
+  .task-info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .day-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #64748b;
+    letter-spacing: 0.5px;
+  }
+
+  .task-name {
+    font-weight: 700;
+    color: #0f172a;
+    font-size: 1.1rem;
+  }
+
+  .time-box {
+    display: inline-block;
+    background: #f8fafc;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    border: 1px solid #e2e8f0;
+    margin-top: 5px;
+  }
+
+  .start { color: #16a34a; font-weight: 600; }
+  .end { color: #dc2626; font-weight: 600; }
+  .arrow { color: #94a3b8; margin: 0 5px; }
+
+  /* Indicators */
+  .before { border-top: 8px solid #334155; }
+  .iot { border-top: 8px solid #ef4444; }
+  .all { border-top: 8px solid #10b981; }
+
+  .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            color: #1e293b;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .header h1 span {
+            color: var(--accent-blue);
+        }
+
+        .protocol-card {
+            background: white;
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #475569;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 8px;
+        }
+
+        .notes-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .note-item {
+            position: relative;
+            padding: 16px 20px 16px 45px;
+            margin-bottom: 12px;
+            background: #f8fafc;
+            border-radius: 12px;
+            transition: all 0.2s ease;
+            border-left: 4px solid transparent;
+        }
+
+        .note-item:hover {
+            transform: translateX(10px);
+            background: #ffffff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            border-left-color: var(--accent-blue);
+        }
+
+        .note-item::before {
+            content: "→";
+            position: absolute;
+            left: 18px;
+            color: var(--accent-blue);
+            font-weight: bold;
+            transition: all 0.2s ease;
+        }
+
+        .note-item:hover::before {
+            content: "⚡";
+        }
+
+        /* Specialized Styling for Specific Notes */
+        .urgent {
+            border-left: 4px solid var(--accent-amber) !important;
+            background: #fffbeb !important;
+        }
+
+        .urgent:hover {
+            border-left-color: #d97706 !important;
+        }
+
+        .data-note {
+            background: #eff6ff;
+            border: 1px dashed #bfdbfe;
+        }
+
+        .footer-tag {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: #64748b;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        @media (max-width: 600px) {
+            .protocol-card { padding: 20px; }
+            .header h1 { font-size: 1.8rem; }
+        }
+</style>
+</head>
+<body>
+
+<h1>🗓 Recruitment Detailed Timeline</h1>
+
+<div class="timeline">
+
+  <div class="card before">
+    <h2>Before Recruitment</h2>
+    
+    <div class="task">
+      <div class="task-info">
+        <span class="day-label">Wednesday</span>
+        <span class="task-name">Send Interviewers Form</span>
+        <div class="time-box">
+          <span class="start"> <span class="end">02:00 PM</span>
+        </div>
+      </div>
+    </div>
+    <div class="task">
+      <div class="task-info">
+        <span class="day-label">Wednesday</span>
+        <span class="task-name">Close Interviewers Form</span>
+        <div class="time-box">
+          <span class="start"><span class="end">10:00 PM</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-info">
+        <span class="day-label">Wednesday</span>
+        <span class="task-name">Post and hunt forms preparation</span>
+        <div class="time-box">
+          <span class="start">10:00 AM</span> <span class="arrow">Until</span> <span class="end">11:59 PM</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-info">
+        <span class="day-label">Thursday</span>
+        <span class="task-name">Sending Mails for Hunt</span>
+        <div class="time-box">
+          <span class="start">10:00 AM</span> <span class="arrow">Until</span> <span class="end">12:00 PM</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-info">
+        <span class="day-label">Thursday</span>
+        <span class="task-name">Publishing Recruitment Form Post</span>
+        <div class="time-box">
+          <span class="start"><span class="end">05:00 PM</span>
+        </div>
+      </div>
+    </div>
+
+     <div class="task">
+      <div class="task-info">
+        <span class="day-label">Thursday</span>
+        <span class="task-name">Closing From</span>
+        <div class="time-box">
+          <span class="start"><span class="end">11:00 PM</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-info">
+        <span class="day-label">Thursday</span>
+        <span class="task-name">Publishing Closing From Post</span>
+        <div class="time-box">
+          <span class="start"><span class="end">11:00 PM</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-info">
+        <span class="day-label">Friday</span>
+        <span class="task-name">Prepare Time slots Sheet, Send mails </span>
+        <div class="time-box">
+          <span class="start"> <span class="end">Deadline is : Friday 08:00 PM </span>
+        </div>
+      </div>
+    </div>
+<div class="task">
+      <div class="task-info">
+        <span class="day-label">Friday</span>
+        <span class="task-name">Publising Post for "Mails Are Sent"</span>
+        <div class="time-box">
+          <span class="start"></span> <span class="arrow"</span> <span class="end">10:00 PM</span>
+        </div>
+      </div>
+    </div>
+  
+  </div>
+
+  <div class="card iot">
+    <h2>Internet of Things Committee</h2>
+    
+    <div class="task">
+      <div class="task-info">
+        <span class="day-label">Monday</span>
+        <span class="task-name">Filtration Process Deadline</span>
+        <div class="time-box">
+          <span class="start"><span class="end">Deadline is : 11:59 PM</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-info">
+        <span class="day-label">Tuesday</span>
+        <span class="task-name">Sending Result Mails</span>
+        <div class="time-box">
+          <span class="start">12:00 PM</span> <span class="arrow">Until</span> <span class="end">02:00 PM</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-info">
+        <span class="day-label">Tuesday</span>
+        <span class="task-name">Calling Members </span>
+        <div class="time-box">
+          <span class="start">02:00 PM</span> <span class="arrow">Until</span> <span class="end">04:00 PM</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-info">
+        <span class="day-label">Tuesday</span>
+        <span class="task-name">Members Group Entry</span>
+        <div class="time-box">
+          <span class="start">04:00 PM</span> <span class="arrow">Until</span> <span class="end">05:00 PM</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-info">
+        <span class="day-label">Tuesday</span>
+        <span class="task-name">Introducing Highboard </span>
+        <div class="time-box">
+          <span class="start"> <span class="end">10:00 PM</span>
+        </div>
+      </div>
+    </div>
+    <div class="task">
+      <div class="task-info">
+        <span class="day-label">Tuesday</span>
+        <span class="task-name">Introducing Board</span>
+        <div class="time-box">
+          <span class="start"> <span class="end">10:30 PM</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card all">
+    <h2>All Other Committees</h2>
+    
+    <div class="task">
+      <div class="task-info">
+        <span class="day-label">Tuesday</span>
+        <span class="task-name">Filtration Process Deadline</span>
+        <div class="time-box">
+          <span class="start"> <span class="end">Deadline is : 11:59 PM</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-info">
+        <span class="day-label">Wednesday</span>
+        <span class="task-name">Sending Result Mails</span>
+        <div class="time-box">
+          <span class="start">10:00 AM (Tuesday)</span> <span class="arrow">Until</span> <span class="end">12:00 PM</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-info">
+        <span class="day-label">Wednesday</span>
+        <span class="task-name">Calling Members </span>
+        <div class="time-box">
+          <span class="start">12:00 PM</span> <span class="arrow">Until</span> <span class="end">03:00 PM</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-info">
+        <span class="day-label">Wednesday</span>
+        <span class="task-name">Publishing Post "Result Mails Are Sent"</span>
+        <div class="time-box">
+          <span class="start"><span class="end">10:30 PM</span>
+        </div>
+      </div>
+    </div>
+    <div class="task">
+      <div class="task-info">
+        <span class="day-label">Wednesday</span>
+        <span class="task-name">Group Entry</span>
+        <div class="time-box">
+          <span class="start">03:00 PM</span> <span class="arrow">Until</span> <span class="end">05:00 PM</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-info">
+        <span class="day-label">Wednesday</span>
+        <span class="task-name">High Board Official Announcement</span>
+        <div class="time-box">
+          <span class="start"><span class="end">10:00 PM</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-info">
+        <span class="day-label">Wednesday</span>
+        <span class="task-name">Board Announcement in Groups</span>
+        <div class="time-box">
+          <span class="start"><span class="end">10:30 PM</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  </div>
+<div class="container">
+        <div class="header">
+            <h1>📋 Important <span>Recruitment Notes</span></h1>
+        </div>
+
+        <div class="protocol-card">
+            
+            <div class="section-title">🛡️ Approval & Confirmation</div>
+            <ul class="notes-list">
+                <li class="note-item">After the filtration phase is closed, all candidates must be reviewed by the Committee Heads.</li>
+                <li class="note-item urgent">No candidate is allowed to proceed unless their status is confirmed by the Head.</li>
+                <li class="note-item">The confirmed candidate list must be sent to the Vice President (VP) before moving to the next stage.</li>
+            </ul>
+
+            <div class="section-title">⛓️ Workflow & Sequential Order</div>
+            <ul class="notes-list">
+                <li class="note-item">All recruitment tasks must follow a strict sequential order across all committees.</li>
+                <li class="note-item urgent">No committee is allowed to start the next task unless the VP officially confirms to proceed.</li>
+                <li class="note-item">Once a task is completed, the committee must notify the VP immediately.</li>
+            </ul>
+
+            <div class="section-title">📊 Data & Documentation</div>
+            <ul class="notes-list">
+                <li class="note-item data-note">The filtration output must be delivered as one consolidated spreadsheet file.</li>
+                <li class="note-item">The file should be divided into multiple pages (tabs) based on levels: <strong>Level X – Accepted</strong> and <strong>Level X – Rejected</strong>.</li>
+                <li class="note-item">Each page must contain full candidate data in one centralized place.</li>
+                <li class="note-item urgent">Rejected pages must include a <strong>Feedback column</strong> with clear and detailed rejection reasons in English for email use.</li>
+            </ul>
+
+            <div class="section-title">⚖️ Final Authority</div>
+            <ul class="notes-list">
+                <li class="note-item">Strict recruitment rules are applied to ensure professionalism and organized workflow across all committees.</li>
+            </ul>
+            
+            <div class="footer-tag">Official Recruitment Protocol 2026</div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
